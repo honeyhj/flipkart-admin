@@ -1,23 +1,26 @@
-import * as types from "../actions/types";
+import {authConstants} from '../actions/types'
 const init = {
     loading:false,
     users:[],
     message:'',
+    auth:{
+        token:""
+    },
     error:''
 }
 const userReducer = (state = init, action) => {
     switch(action.type) {
-        case types.ADMIN_REGISTRATION_REQUEST:
+        case authConstants.ADMIN_REGISTRATION_REQUEST:
         return ({
             loading:true,
         })
-        case types.ADMIN_REGISTRATION_SUCCESS:
+        case authConstants.ADMIN_REGISTRATION_SUCCESS:
         return ({
             ...state,
             loading:false,
             message:action.payload
         })
-        case types.ADMIN_REGISTRATION_FAILURE:
+        case authConstants.ADMIN_REGISTRATION_FAILURE:
         return ({
             ...state,
             loading:false,
