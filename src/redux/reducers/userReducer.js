@@ -31,37 +31,54 @@ const userReducer = (state = init, action) => {
             error:action.payload
         })
         case authConstants.ADMIN_LOGIN_REQUEST:
-            state = {
+            return({
                 ...state,
+                loading:true,
                 authenticating: true
-            }
-            break;
+            })
         case authConstants.ADMIN_LOGIN_SUCCESS:
-            state = {
+            return({
                 ...state,
+                loading:true,
                 user: action.payload.user,
                 token: action.payload.token,
                 authenticate: true,
-                authenticating: false
-            }
-            break;
+                authenticating: true
+            })
+            // state = {
+            //     ...state,
+            //     user: action.payload.user,
+            //     token: action.payload.token,
+            //     authenticate: true,
+            //     authenticating: false
+            // }
         case authConstants.ADMIN_LOGOUT_REQUEST:
-            state = {
+            return({
                 ...state,
                 loading: true
-            }
-            break;
+            })
+            // state = {
+            //     ...state,
+            //     loading: true
+            // }
         case authConstants.ADMIN_LOGOUT_SUCCESS:
-            state = {
+            return({
                 ...init
-            }
-            break;
+            })
+            // state = {
+            //     ...init
+            // }
         case authConstants.ADMIN_LOGOUT_FAILURE:
-            state = {
+            return({
                 ...state,
                 error: action.payload.error,
                 loading: false
-            }
+            })
+            // state = {
+            //     ...state,
+            //     error: action.payload.error,
+            //     loading: false
+            // }
         default: return state
     }
 }

@@ -1,32 +1,65 @@
 import React from 'react'
-import { Form, Button } from 'react-bootstrap'
-import { createUser } from '../../../redux/actions/userActions'
+import { Form, Button,Col,Row,Card,Container } from 'react-bootstrap'
+import { userLogin } from '../../../redux/actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Layout from '../../layouts/Layout'
-export default function SignIn() {
-    return (
-        <Layout>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-  </Form.Text>
-                </Form.Group>
+import Input from '../../ui/input'
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-</Button>
+export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  // const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user.loading) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [user.loading]);
+
+  const userSignIn = (e) => {
+    e.preventDefault();
+
+    const user = {
+      email,
+      password,
+    };
+    dispatch(userLogin(user));
+  };
+  return (
+    <Layout>
+      <Container>
+        {user.message}
+        <Row style={{ marginTop: "50px" }}>
+          <Col md={{ span: 6, offset: 3 }}>
+            <Form onSubmit={userSignIn}>
+              <Input
+                label="Email"
+                placeholder="Email"
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <Input
+                label="Password"
+                placeholder="Password"
+                value={password}
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
             </Form>
-        </Layout>
-    )
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
+
+
+  )
 }
