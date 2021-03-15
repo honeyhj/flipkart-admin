@@ -34,8 +34,8 @@ export default function SignIn() {
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from,'k')
-  if(user.authenticate){
-      history.push("/")
+  if(user.authenticate){ 
+      history.push(from)
   }
 
   return (
