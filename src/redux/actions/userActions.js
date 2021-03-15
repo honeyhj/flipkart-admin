@@ -33,6 +33,8 @@ export const userLogin = (userDetail) =>{
         const res = await axios.post(`http://localhost:2000/api/adminLogin`, userDetail);
         if (res.status === 200) {
             const {token,user} = res.data;
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
             dispatch({
                 type: authConstants.LOGIN_SUCCESS,
                 payload: {

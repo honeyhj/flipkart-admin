@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from './layouts/Layout';
 
 const Onno = () => {
     return (
-        <div>
-            Onno route
-        </div>
+        <Layout sidebar>
+            <h2>all categories</h2>
+        </Layout>
     );
 };
 
