@@ -33,6 +33,7 @@ export default function SignIn() {
   const history = useHistory();
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
+  console.log(from,'k')
   if(user.authenticate){
       history.replace(from);
   }

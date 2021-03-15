@@ -1,4 +1,5 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
+import {useDispatch,useSelector} from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,9 +10,21 @@ import SignUp from './components/pages/signUp';
 import SignIn from './components/pages/signIn'
 import Onno from './components/Onno';
 import PrivateRoute from './components/hoc/PrivateRoute';
+import { isUserLoggedIn } from './redux/actions/authActions';
 
 
 function App() {
+  const dispatch = useDispatch();
+  const authenticate = useSelector(state => state.authenticate)
+
+
+  //componentDidMount or componentDidUpdate
+  useEffect(() => {
+    if (!authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+
+  }, [authenticate]);
   return (
 
     <Router>
