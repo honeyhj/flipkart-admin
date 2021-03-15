@@ -23,7 +23,6 @@ function App() {
     if (!authenticate) {
       dispatch(isUserLoggedIn());
     }
-
   }, [authenticate]);
   return (
 
