@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout'
 const HomePage
  = (props) => {
     return (
-            <Layout>
+            <Layout sidebar>
                     homePage
             </Layout>
     );
