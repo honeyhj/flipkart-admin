@@ -35,7 +35,7 @@ export default function SignIn() {
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from,'k')
   if(user.authenticate){
-      history.replace(from);
+      history.push("/")
   }
 
   return (
