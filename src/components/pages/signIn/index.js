@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Layout from '../../layouts/Layout'
 import Input from '../../ui/input'
+import { Redirect, useHistory, useLocation } from 'react-router'
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,6 +30,13 @@ export default function SignIn() {
     };
     dispatch(userLogin(user));
   };
+  const history = useHistory();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+  if(user.authenticate){
+      history.replace(from);
+  }
+
   return (
     <Layout>
       <Container>

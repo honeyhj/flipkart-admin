@@ -28,14 +28,13 @@ export const createUser = (userDetails) => {
 export const userLogin = (userDetail) =>{
     return async(dispatch) =>{
         dispatch({
-            type: authConstants.ADMIN_LOGIN_REQUEST
+            type: authConstants.LOGIN_REQUEST
         })
         const res = await axios.post(`http://localhost:2000/api/adminLogin`, userDetail);
-        console.log(res.status)
         if (res.status === 200) {
             const {token,user} = res.data;
             dispatch({
-                type: authConstants.ADMIN_REGISTRATION_SUCCESS,
+                type: authConstants.LOGIN_SUCCESS,
                 payload: {
                     token,
                     user
@@ -43,7 +42,7 @@ export const userLogin = (userDetail) =>{
             })
         } else if (res.status === 400) {
             dispatch({
-                type: authConstants.ADMIN_REGISTRATION_FAILURE,
+                type: authConstants.LOGOUT_FAILURE,
                 payload: res.data.message
             })
         }

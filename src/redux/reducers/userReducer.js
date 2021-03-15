@@ -7,6 +7,7 @@ const init = {
         email: '',
         picture: ''
     },
+    check:false,
     authenticate:false,
     authenticating:false,
     loading: false,
@@ -30,20 +31,20 @@ const userReducer = (state = init, action) => {
             loading:false,
             error:action.payload
         })
-        case authConstants.ADMIN_LOGIN_REQUEST:
+        case authConstants.LOGIN_REQUEST:
             return({
                 ...state,
                 loading:true,
                 authenticating: true
             })
-        case authConstants.ADMIN_LOGIN_SUCCESS:
+        case authConstants.LOGIN_SUCCESS:
             return({
                 ...state,
-                loading:true,
+                loading:false,
                 user: action.payload.user,
                 token: action.payload.token,
                 authenticate: true,
-                authenticating: true
+                authenticating: false
             })
             // state = {
             //     ...state,
@@ -52,7 +53,7 @@ const userReducer = (state = init, action) => {
             //     authenticate: true,
             //     authenticating: false
             // }
-        case authConstants.ADMIN_LOGOUT_REQUEST:
+        case authConstants.LOGOUT_REQUEST:
             return({
                 ...state,
                 loading: true
@@ -61,14 +62,14 @@ const userReducer = (state = init, action) => {
             //     ...state,
             //     loading: true
             // }
-        case authConstants.ADMIN_LOGOUT_SUCCESS:
+        case authConstants.LOGOUT_SUCCESS:
             return({
                 ...init
             })
             // state = {
             //     ...init
             // }
-        case authConstants.ADMIN_LOGOUT_FAILURE:
+        case authConstants.LOGOUT_FAILURE:
             return({
                 ...state,
                 error: action.payload.error,
