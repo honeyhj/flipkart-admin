@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {Navbar,Nav} from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 
 const Header = () => {
+  // const user = useSelector(state=>state.user.authenticate)
+  // if(user.authenticate)
     return (
         <>
   <Navbar bg="dark" variant="dark">

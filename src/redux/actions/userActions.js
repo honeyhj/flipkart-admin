@@ -50,3 +50,20 @@ export const userLogin = (userDetail) =>{
         }
     }
 }
+export const userSignOut = () =>{
+    return async(dispatch)=> {
+        dispatch({
+            type: authConstants.LOGOUT_REQUEST,
+        })
+        const res = await axios.post(`http://localhost:2000/api/userLogout`);
+        if(res.status === 200){
+            localStorage.clear();
+            dispatch({ type: authConstants.LOGOUT_SUCCESS });
+        }else{
+            dispatch({
+                type: authConstants.LOGOUT_FAILURE,
+                payload: { error: res.data.error }
+            });
+        }
+    }
+}
