@@ -12,6 +12,7 @@ import Onno from './components/Onno';
 import PrivateRoute from './components/hoc/PrivateRoute';
 import { isUserLoggedIn } from './redux/actions/authActions';
 import Category from './components/pages/category'
+import { getCategories } from './redux/actions/categoryAction';
 
 
 function App() {
@@ -25,6 +26,11 @@ function App() {
       dispatch(isUserLoggedIn());
     }
   }, [authenticate]);
+
+  useEffect(() => {console.log('kkk')
+  dispatch(getCategories())
+  
+},[])
   return (
 
    
