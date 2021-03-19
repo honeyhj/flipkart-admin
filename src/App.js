@@ -12,6 +12,8 @@ import Onno from './components/Onno';
 import PrivateRoute from './components/hoc/PrivateRoute';
 import { isUserLoggedIn } from './redux/actions/authActions';
 import Category from './components/pages/category'
+import { getCategories } from './redux/actions/categoryAction';
+import Product from './components/pages/product';
 
 
 function App() {
@@ -25,19 +27,18 @@ function App() {
       dispatch(isUserLoggedIn());
     }
   }, [authenticate]);
+  useEffect(() => {
+  dispatch(getCategories())
+},[])
   return (
-
-   
-
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/signin" exact component={SignIn} />
         <PrivateRoute path="/onno" exact component={Onno} />
-        <PrivateRoute path="/category" exact component={Category} />
+        <Route path="/category" exact component={Category} />
+        <Route path="/product" exact component={Product} />
       </Switch>
-   
-
   );
 }
 

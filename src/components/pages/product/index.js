@@ -1,0 +1,62 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../../../redux/actions/categoryAction';
+import Layout from '../../layouts/Layout';
+
+const Product = () => {
+    const [info,setInfo] = useState({
+        name:'',
+        price:'',
+        quantity:'',
+        description:'',
+        productPictures:[],
+        category:'',
+    })
+    const cate = useSelector(state => state.categories.allCategories)
+    const dispatch = useDispatch()
+    
+    const showCategory = (categoriesset,options=[]) => {
+        const categoriesrenderlist = [];
+        for (let category of categoriesset) {
+            categoriesrenderlist.push(
+                `<option value={category._id}>{category.name}</option>`
+            )
+            if(category.children.length > 0){
+                showCategory(category.children,categoriesrenderlist)
+            }
+        }
+        return categoriesrenderlist;
+    }
+    
+    
+    const handleChange = (e) => {
+        const newUser = {...info}
+        newUser[e.target.name] = e.target.value;
+        setInfo(newUser)
+    }
+    return (
+        <Layout sidebar>
+            <form onSubmit="">
+                <input type="text" name="name" id="" onChange={handleChange} placeholder="name"/>
+                <br />
+                <input type="text" name="price" id="" onChange={handleChange} placeholder="price"/>
+                <br />
+                <input type="text" name="quantity" id="" onChange={handleChange} placeholder="quantity"/>
+                <br />
+                <input type="text" name="description" id="" onChange={handleChange} placeholder="description"/>
+                <br />
+                <input type="file" name="productPictures" id="" multiple={true}/>
+                <br />
+                <select name="category" onChange={handleChange}>
+                    {
+                        showCategory(cate)
+                    }
+                    <option value=''>select category</option>
+                </select>
+                <br />
+            </form>
+        </Layout>
+    );
+};
+
+export default Product;
