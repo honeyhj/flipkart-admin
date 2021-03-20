@@ -18,12 +18,13 @@ window.store = {store}
 
 ReactDOM.render(
   
-    <Provider store={store}>
-      <Router>
+  <Provider store={store}>
+  <Router>
+    <React.StrictMode>
       <App />
-      </Router>
-     
-    </Provider>
+    </React.StrictMode>
+  </Router>
+</Provider>
  ,
   document.getElementById('root')
 );

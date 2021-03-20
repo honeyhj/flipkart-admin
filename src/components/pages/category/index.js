@@ -14,13 +14,14 @@ import {
     IoIosTrash,
     IoIosCloudUpload
 } from 'react-icons/io'
-export default function Category() {
+const Category=(props) =>{
     const [checked, setChecked] = useState([])
     const [expanded, setExpanded] = useState([])
     const categories = useSelector(state => state.categories.allCategories)
     const dispatch = useDispatch();
+    console.log(categories,'ppp')
     const showCategory = (categoriesset) => {
-        const categoriesrenderlist = [];
+        let categoriesrenderlist = [];
         for (let category of categoriesset) {
             categoriesrenderlist.push({
                 value: category._id,
@@ -53,6 +54,7 @@ export default function Category() {
                 </Row>
                 <Row>
                     <Col md={12}>
+                        
                         <CheckboxTree
                             nodes={showCategory(categories.categoryList)}
                             checked={checked}
@@ -73,3 +75,4 @@ export default function Category() {
         </Layout>
     )
 }
+export default  Category;

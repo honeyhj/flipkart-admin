@@ -17,20 +17,21 @@ import { getCategories } from './redux/actions/categoryAction';
 
 function App() {
   const dispatch = useDispatch();
-  const authenticate = useSelector(state => state.authenticate)
-
+  const authenticate = useSelector(state => state.user.authenticate)
+console.log(authenticate)
 
   //componentDidMount or componentDidUpdate
   useEffect(() => {
     if (!authenticate) {
       dispatch(isUserLoggedIn());
     }
+    if(authenticate){
+      dispatch(getCategories())
+    }
+    
   }, [authenticate]);
 
-  useEffect(() => {console.log('kkk')
-  dispatch(getCategories())
-  
-},[])
+
   return (
 
    
