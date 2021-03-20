@@ -13,7 +13,7 @@ import PrivateRoute from './components/hoc/PrivateRoute';
 import { isUserLoggedIn } from './redux/actions/authActions';
 import Category from './components/pages/category'
 import { getCategories } from './redux/actions/categoryAction';
-
+console.log('app')
 
 function App() {
   const dispatch = useDispatch();

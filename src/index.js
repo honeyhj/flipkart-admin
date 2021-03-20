@@ -11,10 +11,15 @@ import {
 import { Provider } from 'react-redux';
 import store from './redux/store/store';
  import 'bootstrap/dist/css/bootstrap.min.css';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { isUserLoggedIn } from './redux/actions/authActions';
+import { getCategories } from './redux/actions/categoryAction';
 
 
 
 window.store = {store}
+
 
 ReactDOM.render(
   

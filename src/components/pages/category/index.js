@@ -14,15 +14,16 @@ import {
     IoIosTrash,
     IoIosCloudUpload
 } from 'react-icons/io'
+import { getCategories } from '../../../redux/actions/categoryAction';
 const Category=(props) =>{
     const [checked, setChecked] = useState([])
     const [expanded, setExpanded] = useState([])
     const categories = useSelector(state => state.categories.allCategories)
     const dispatch = useDispatch();
     console.log(categories,'ppp')
-    const showCategory = (categoriesset) => {
+    const showCategory = (categories) => {
         let categoriesrenderlist = [];
-        for (let category of categoriesset) {
+        for (let category of categories) {
             categoriesrenderlist.push({
                 value: category._id,
                 label: category.name,
@@ -30,6 +31,7 @@ const Category=(props) =>{
             })
         }
         return categoriesrenderlist;
+
     }
 
 
@@ -57,7 +59,7 @@ const Category=(props) =>{
                         
                         
                         <CheckboxTree
-                            nodes={showCategory(categories.categoryList)}
+                            nodes={showCategory(categories)}
                             checked={checked}
                             expanded={expanded}
                             onCheck={checked => setChecked(checked)}
