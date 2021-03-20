@@ -34,7 +34,6 @@ export default function Category() {
     }
     return (
         <Layout sidebar>
-
             <Container>
                 <Row>
                     <Col md={12}>
@@ -53,9 +52,9 @@ export default function Category() {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        {/* {categories.length > 0 &&
+                        {categories.length > 0 &&
                         <CheckboxTree
-                            nodes={showCategory(categories.categoryList)}
+                            nodes={showCategory(categories)}
                             checked={checked}
                             expanded={expanded}
                             onCheck={checked => setChecked(checked)}
@@ -67,7 +66,7 @@ export default function Category() {
                                 expandClose: <IoIosArrowForward />,
                                 expandOpen: <IoIosArrowDown />
                             }}
-                        />} */}
+                        />}
                     </Col>
                 </Row>
             </Container>
