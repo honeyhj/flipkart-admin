@@ -16,16 +16,15 @@ const Product = () => {
     const dispatch = useDispatch()
     
     const showCategory = (categoriesset,options=[]) => {
-        const categoriesrenderlist = [];
         for (let category of categoriesset) {
-            categoriesrenderlist.push(
+            options.push(
                 `<option value={category._id}>{category.name}</option>`
             )
             if(category.children.length > 0){
-                showCategory(category.children,categoriesrenderlist)
+                showCategory(category.children,options)
             }
         }
-        return categoriesrenderlist;
+        return options;
     }
     
     
@@ -47,9 +46,13 @@ const Product = () => {
                 <br />
                 <input type="file" name="productPictures" id="" multiple={true}/>
                 <br />
+                {
+                    JSON.stringify(cate)
+                }
                 <select name="category" onChange={handleChange}>
                     {
-                        showCategory(cate)
+                        // showCategory(cate)
+                        JSON.stringify(cate)
                     }
                     <option value=''>select category</option>
                 </select>

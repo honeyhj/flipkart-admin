@@ -14,21 +14,21 @@ import {
     IoIosTrash,
     IoIosCloudUpload
 } from 'react-icons/io'
-export default function Category() {
+import { getCategories } from '../../../redux/actions/categoryAction';
+const Category=(props) =>{
     const [checked, setChecked] = useState([])
     const [expanded, setExpanded] = useState([])
     const categories = useSelector(state => state.categories.allCategories)
     const dispatch = useDispatch();
-    const showCategory = (categoriesset) => {
-        const categoriesrenderlist = [];
-        if(categoriesset.length >0){
-        for (let category of categoriesset) {
+    console.log(categories,'ppp')
+    const showCategory = (categories) => {
+        let categoriesrenderlist = [];
+        for (let category of categories) {
             categoriesrenderlist.push({
                 value: category._id,
                 label: category.name,
                 children: category.children.length > 0 && showCategory(category.children)
             })
-        }
         }
         return categoriesrenderlist;
     }
@@ -52,7 +52,6 @@ export default function Category() {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        {categories.length > 0 &&
                         <CheckboxTree
                             nodes={showCategory(categories)}
                             checked={checked}
@@ -66,10 +65,11 @@ export default function Category() {
                                 expandClose: <IoIosArrowForward />,
                                 expandOpen: <IoIosArrowDown />
                             }}
-                        />}
+                        />
                     </Col>
                 </Row>
             </Container>
         </Layout>
     )
 }
+export default  Category;
