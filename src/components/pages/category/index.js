@@ -55,6 +55,7 @@ const Category=(props) =>{
                 <Row>
                     <Col md={12}>
                         
+                        
                         <CheckboxTree
                             nodes={showCategory(categories.categoryList)}
                             checked={checked}

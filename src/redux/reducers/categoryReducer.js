@@ -6,6 +6,10 @@ const init  = {
     message:'',
     error:''
 }
+// const buildCategories = (categories) =>{
+//     console.log(categories.parentId,'printed');
+    
+// }
 const categoryReducer = (state = init , action) =>{
     switch(action.type) {
         case categoryConstants.CREATE_CATEGORY_REQUEST:
@@ -14,6 +18,8 @@ const categoryReducer = (state = init , action) =>{
                 loading:true
             }
         case categoryConstants.CREATE_CATEGORY_SUCCESS:
+            // const category = action.payload.categoryList
+            //  const categories = buildCategories(category)
             return{
                 ...state,
                 loading:false,
@@ -35,7 +41,7 @@ const categoryReducer = (state = init , action) =>{
             return{
                 ...state,
                 loading:false,
-                allCategories:action.payload
+                allCategories:action.payload.categoryList
             }
         case categoryConstants.GET_CATEGORY_FAILURE:
             return{

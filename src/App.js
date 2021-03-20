@@ -18,7 +18,6 @@ import { getCategories } from './redux/actions/categoryAction';
 function App() {
   const dispatch = useDispatch();
   const authenticate = useSelector(state => state.user.authenticate)
-console.log(authenticate)
 
   //componentDidMount or componentDidUpdate
   useEffect(() => {
